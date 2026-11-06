@@ -61,6 +61,11 @@ const socket = io();
       lobbyWaiting.style.display = 'block';
     });
 
+    // Show "Room not found", "Room is full", etc. under the JOIN button
+    socket.on('error_message', (message) => {
+      document.getElementById('error-msg').innerText = message;
+    });
+
     socket.on('start_submission_phase', () => {
       lobbyWaiting.style.display = 'none';
       stepPhotos.style.display = 'block';
