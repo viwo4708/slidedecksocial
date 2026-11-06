@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join-Slide Deck Social</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=McLaren&family=Noto+Color+Emoji&family=Slackey&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="join.css">
+</head>
+<body>
+
+    <!-- 1. Join Form -->
+
+  <div class="smallheader">
+      <h1>Slide Deck Social</h1>
+      <h4>😂😭🫣🧐</h4>
+    </div>
+ <!-- Join Form -->
+  <div id="join-form" style="display: block;">
+    <h2 style="font-size: 10vw;">Join A Game</h2>
+    <input type="text" id="room-code-input" placeholder="ROOM CODE" maxlength="4"><br>
+    <input type="text" id="username-input" placeholder="YOUR USERNAME" maxlength="15"><br>
+    <button id="join-btn">JOIN</button>
+    <p id="error-msg" style="color: #ff8892"></p>
+  </div>
+
+  <div id="lobby-waiting" style="display: none;">
+    <h2 style="font-size: 10vw;;">You're In!</h2>
+    <p style="font-family: 'McLaren';">Waiting for host to start game...</p>
+  </div>
+
+  <div id="step-photos" style="display: none;">
+    <h2>Step 1: Add your photos!</h2>
+    <p>Please add exactly 6 photos.</p>
+    <br>
+    <label class="upload-btn">
+      Add Photos
+      <input type="file" id="photo-input" accept="image/*" multiple style="display: none;">
+    </label>
+    <div id="photo-preview" class="photo-grid"></div>
+    <button id="next-to-topics-btn" style="display: none;">Next: Add Topics</button>
+  </div>
+
+  <div id="step-topics" style="display: none;">
+    <h3>Step 2: Come up with 2 topics!</h3>
+    <input type="text" id="topic1" placeholder="Topic 1 (max 125 chars)" maxlength="125"><br>
+    <input type="text" id="topic2" placeholder="Topic 2 (max 125 chars)" maxlength="125"><br>
+    <button id="submit-content-btn">Submit Topics</button>
+  </div>
+
+  <div id="submitted-waiting" style="display: none;">
+    <h2 id="waiting-title">Submissions Received!</h2>
+    <p id="waiting-subtitle">Waiting for other players...</p>
+  </div>
+
+  <div id="countdown-screen" style="display: none;">
+    <h2>Get Ready!</h2>
+    <h1 id="countdown-timer" style="font-size: 3rem; color: #EBEBEB">10</h1>
+  </div>
+
+  <div id="presenter-screen" class="card" style="display: none;">
+    <h2>YOU'RE PRESENTING!</h2>
+    <p>Start talking and watch the TV screen!</p>
+    <p><b>Topic:</b> <span id="presenter-topic-display"></span></p>
+  </div>
+
+  <div id="audience-screen" class="card" style="display: none;">
+    <h2>Shhhh.....</h2>
+    <p><span id="audience-presenter-name"></span> is presenting!</p>
+  </div>
+
+  <div id="slidemaster-screen" style="display: none;">
+    <h3 style="color: #EBEBEB; margin-bottom: 5px;">SLIDEMASTER CONTROLS</h3>
+    <p style="margin: 5px 0;">Queueing up <b>Slide <span id="next-slide-num">2</span></b> for <span id="sm-presenter-name"></span>:</p>
+    <!-- <p style="font-size: 0.9rem; color: #00e676;">Type: <b><span id="next-slide-type-label">PHOTO</span> SCROLLER</b></p> -->
+
+    <div class="carousel-container">
+      <button class="nav-btn" id="prev-btn">&lt;</button>
+      <div id="carousel-view" class="carousel-view"></div>
+      <button class="nav-btn" id="next-btn">&gt;</button>
+    </div>
+
+    <button id="advance-slide-btn">Advance Slide &gt;</button>
+  </div>
+
+  <!-- Rating Screen -->
+  <div id="rating-screen" style="display: none;">
+    <h3 style="color: #EBEBEB;">Rate Presentation</h3>
+    <p>How was <span id="rating-presenter-name"></span>'s presentation?</p>
+
+    <div class="stepper-container">
+      <button class="step-btn" id="decrement-rating">-</button>
+      <div id="rating-value" class="rating-number">8</div>
+      <button class="step-btn" id="increment-rating">+</button>
+    </div>
+    <p style="font-size: 0.85rem; color: #aaa; margin: 0;">out of 10</p>
+
+    <br>
+    <textarea id="comment-input" placeholder="Leave a comment (optional)" maxlength="150"></textarea><br>
+    <button id="submit-rating-btn">Submit Rating</button>
+  </div>
+
+  <!-- End Game / Personal Feedback Screen -->
+  <div id="feedback-screen" style="display: none;">
+    <h2>Nice Job Presenting!</h2>
+    <p>Your Final Score: <span id="my-final-score" style="color: #ff8892; font-weight: bold; font-size: 1.3rem;">0</span></p>
+    <h3>Comments:</h3>
+    <div id="my-comments-list" style="max-height: 200px; overflow-y: auto;"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="./join.js"></script>
+</body>
+</html>

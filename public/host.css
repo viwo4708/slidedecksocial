@@ -1,0 +1,157 @@
+ body { 
+        font-family: sans-serif; 
+        text-align: center; 
+        background: #52489C; 
+        color: white; 
+        padding: 10px; 
+    }
+
+h1 {
+    font-family: "Slackey";
+     color: #ff8892;
+}
+
+h2, h3 {
+    font-family: "McLaren";
+}
+
+p {
+    font-family: "Dosis";
+}
+
+.smallheader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2vw;
+}
+.smallheader h1 {
+    font-size: 2vw;
+}
+
+.smallheader h4 {
+    font-family: "Noto Color Emoji";
+    font-size: 2vw;
+    margin: 0;
+}
+    .card { 
+        background: #ff8892; 
+        color: #EBEBEB;
+        padding: 20px; 
+        border-radius: 10px; 
+        display: inline-block; 
+        margin-top: 20px; 
+    }
+
+    .landing-page {
+        background: #52489C; 
+    }
+
+    .landing-page h1 {
+        font-size: 7vw;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .landing-page h2 {
+        color: #EBEBEB;
+        font-size: 3vw;
+        margin-top: 3vh;
+    }
+
+    button {
+        background-color: #59c3c3;
+        display: block;
+        width: 50vw;
+        height: 10vh;
+        border-radius: 50px;
+        font-family: "McLaren";
+        color: #EBEBEB;
+        font-size: 2rem;
+    }
+
+    .landing-page h4 {
+        font-family: "Noto Color Emoji";
+        font-size: 7vw;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .room-code { 
+        font-size: 6vw; 
+        font-family: "Slackey";
+        letter-spacing: 5px; 
+        color: #59c3c3; 
+        margin: 10px 0; 
+    }
+    .player-grid { 
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 20px; 
+        margin-top: 30px; 
+    }
+    .player-card { 
+        background: #ff8892; 
+        color: #EBEBEB;
+        padding: 15px; 
+        border-radius: 8px; 
+        width: 120px; 
+    }
+    .player-card img { 
+        width: 80px; 
+        height: 80px; 
+    }
+
+    /* Presentation Slide Stage Styling */
+    .slide-stage { 
+        background: #9789ff; 
+        border: 3px solid #6b58fe; 
+        width: 80vw; 
+        /* max-width: 900px;  */
+        height: 80vh; 
+        margin: 20px auto; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        position: relative; 
+        padding: 20px; 
+    }
+    .slide-counter { 
+        position: absolute; 
+        top: 15px; 
+        right: 20px; 
+        font-size: 2rem; 
+        font-family: "McLaren";
+        font-weight: bold; 
+        color: #EBEBEB; 
+    }
+    .slide-content img { 
+        max-width: 100%; 
+        max-height: 70vh; 
+        border-radius: 8px; 
+    }
+    .slide-content h2 { 
+        font-size: 4rem; 
+        color: #EBEBEB; 
+        text-align: left;
+    }
+
+/* Rankings Board Styling */
+    .ranking-row { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        background: #EBEBEB; 
+        color: #52489C;
+        padding: 12px 20px; 
+        border-radius: 8px; 
+        margin: 10px auto; 
+        width: 60%; 
+        max-width: 500px; 
+        font-size: 1.3rem; 
+    }
+    .ranking-top-3 { 
+        border: 9px solid #59c3c3; 
+    }

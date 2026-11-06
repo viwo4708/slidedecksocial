@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Host-Slide Deck Social</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=McLaren&family=Noto+Color+Emoji&family=Slackey&display=swap" rel="stylesheet">  
+<link rel="stylesheet" href="host.css">
+</head>
+<body>
+
+    <div class="smallheader">
+      <h1>Slide Deck Social</h1>
+      <h4>😂  😭  😁  😋  🫣  🧐</h4>
+    </div>
+<!-- 1. Home Screen -->
+  <div id="home-screen" class="landing-page">
+    <h1>sliDe dEcK soCiAL</h1>
+    <h4>😂  😭  😁  😋  🫣  🧐</h4>
+    <h2>Your pictures, your topics. Present responsibly!</h2>
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2vh;">
+      <button id="start-game-btn">Start a Game</button>
+      <a href="./join" style="text-decoration: none;"><button>Join a Game</button>\</a>
+    </div>
+    <!-- TODO: CHANGE THIS WHEN YOU HOST -->
+
+  </div>
+
+  <!-- 2. Lobby Screen -->
+  <div id="lobby-screen" style="display: none;">
+      <h2 style="font-size: 2vw; margin-bottom: 0; margin-top: 2vh;">Join Room with Code:</h2>
+      <div id="display-room-code" class="room-code">----</div>
+      <h3 style="font-size: 2vw; margin-top: 0;"><span id="player-count">0</span>/8 Players Joined</h3>
+    <div id="player-grid" class="player-grid"></div>
+    <br><br>
+    <button id="host-start-btn" style="display:none;">Start Game</button>
+  </div>
+
+  <!-- 3. Submissions Screen -->
+  <div id="submission-screen" style="display: none;">
+    <h1>Add your pictures and come up with your topics!</h1>
+    <p>Look at your phones to complete Step 1 & Step 2.</p>
+    <h2>Submissions Status (<span id="submitted-count">0</span>/<span id="total-count">0</span>)</h2>
+    <div id="submission-grid" class="player-grid"></div>
+    <br>
+    <button id="begin-presentations-btn" style="display: none;">Begin Presentations!</button>
+  </div>
+
+  <!-- 4. Countdown Screen -->
+  <div id="countdown-screen" style="display: none;">
+    <h2 id="announce-presenter" style="color: #59c3c3; font-size: 3rem;">PLAYER, YOU'RE PRESENTING!</h1>
+    <h2 id="announce-slidemaster" style="color: #EBEBEB;">Slidemaster: PLAYER2</h2>
+    <h1 id="host-countdown" style="font-size: 5rem; margin: 20px 0;">10</h1>
+  </div>
+
+  <!-- 5. Slide Presentation Stage -->
+  <div id="presentation-stage" class="slide-stage" style="display: none;">
+    <div id="slide-counter" class="slide-counter">1/10</div>
+    <div id="slide-content" class="slide-content"></div>
+  </div>
+
+  <!-- 6. Rating Phase Screen -->
+  <div id="host-rating-screen" style="display: none;">
+    <h1 style="font-size: 3rem;">Presentation Complete!</h1>
+    <h2 style="color: #59c3c3; font-size: 2.5rem;">Players are rating <span id="rating-presenter-title"></span>...</h2>
+    <p style="font-size: 2.2rem;">Check phones to submit ratings & comments.</p>
+  </div>
+
+  <!-- 7. Final Rankings Leaderboard Screen -->
+  <div id="rankings-screen" style="display: none;">
+    <h1 style="color: #59c3c3; font-size: 2.5rem;">Final Rankings</h1>
+    <div style="display: flex; flex-direction: column; align-content: center; align-items: center;">
+      <div id="rankings-list" style="margin-top: 20px; width: 100%;">
+        <!-- <div class="ranking-top-3 ranking-row">
+          <span><b style="font-size: 3rem;">1</b> USERNAME1</span><span style="font-weight: bold;">38 pts</span>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="./host.js"></script>
+</body>
+</html>
