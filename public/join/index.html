@@ -15,8 +15,10 @@
     <!-- 1. Join Form -->
 
   <div class="smallheader">
-      <h1>Slide Deck Social</h1>
-      <h4>😂😭🫣🧐</h4>
+      <div class="header-brand">
+        <a href="../index.html" style="text-decoration: none;"><h1>Slide Deck Social</h1></a>
+        <h4>😂😭🫣🧐</h4>
+      </div>
     </div>
  <!-- Join Form -->
   <div id="join-form" style="display: block;">
@@ -110,6 +112,8 @@
     <h3>Comments:</h3>
     <div id="my-comments-list" style="max-height: 200px; overflow-y: auto;"></div>
   </div>
+
+  <button id="leave-game-btn" type="button" aria-label="Leave game">Leave Game</button>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="./join.js"></script>

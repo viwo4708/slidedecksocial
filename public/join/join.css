@@ -22,18 +22,42 @@ p {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 2vw;
-    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
 }
 
 .smallheader h1 {
     font-size: 5vw;
+    margin: 0;
 }
 
 .smallheader h4 {
     font-family: "Noto Color Emoji";
     font-size: 5vw;
     margin: 0;
+}
+
+.smallheader-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-left: auto;
+}
+
+.smallheader-nav a {
+    font-family: "Dosis";
+    font-size: 1.1rem;
+    color: #EBEBEB;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 
@@ -56,6 +80,25 @@ p {
         border-radius: 30px; 
         cursor: pointer;
         margin-top: 5vh;
+    }
+
+    #leave-game-btn {
+        display: none;
+        position: fixed;
+        left: 50%;
+        bottom: calc(0.75rem + env(safe-area-inset-bottom));
+        transform: translateX(-50%);
+        z-index: 20;
+        width: min(56vw, 220px);
+        max-width: calc(100vw - 2rem);
+        height: auto;
+        margin: 0;
+        padding: 0.7rem 1rem;
+        font-size: 1.1rem;
+    }
+
+    #leave-game-btn.is-visible {
+        display: block;
     }
     .card { 
         background: #ff8892; 
@@ -91,15 +134,120 @@ p {
     
     }
     .nav-btn { 
-        width: 45px; 
-        height: 45px; 
-        font-size: 1.5rem; 
+        width: 42px;
+        min-width: 42px;
+        max-width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        padding: 0;
+        margin: 0;
+        font-size: 1.2rem;
         border-radius: 50%; 
         background: #ff8892; 
         border: none; 
         color: white; 
         font-weight: bold; 
         cursor: pointer; 
+    }
+
+    #advance-slide-btn {
+        display: block;
+        width: 40%;
+        max-width: 40%;
+        margin: 5vh auto 0;
+        margin-bottom: 5vh;
+    }
+
+    #join-entry-nav {
+        display: flex;
+    }
+
+    #join-entry-nav.is-hidden {
+        display: none !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            margin: 0;
+            padding: 0;
+            padding-bottom: 4.5rem;
+        }
+
+        .smallheader {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0.75rem 0.75rem 0.5rem;
+            margin: 0;
+        }
+
+        .header-brand {
+            flex-wrap: nowrap;
+            gap: 0.35rem;
+        }
+
+        .smallheader h1 {
+            font-size: clamp(1.05rem, 5vw, 1.4rem);
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .smallheader h4 {
+            font-size: clamp(0.8rem, 3.8vw, 1rem);
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .smallheader-nav {
+            justify-content: center;
+            width: 100%;
+            gap: 0.7rem;
+            margin-left: 0;
+            margin-top: 0.25rem;
+        }
+
+        .smallheader-nav a {
+            font-size: 0.9rem;
+        }
+
+        #join-form,
+        #join-form * {
+            box-sizing: border-box;
+        }
+
+        #join-form {
+            width: 100%;
+            margin: 0;
+            padding: 0 0.75rem;
+        }
+
+        #join-form input,
+        #join-form button,
+        #step-photos input,
+        #step-photos button,
+        #step-topics input,
+        #step-topics button,
+        #rating-screen textarea,
+        #rating-screen button,
+        #submit-rating-btn,
+        #join-btn,
+        #submit-content-btn,
+        #next-to-topics-btn {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box;
+        }
+
+        .photo-grid img,
+        .carousel-view img,
+        .slide-content img,
+        .pagecontent img,
+        img {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto;
+            display: block;
+        }
     }
 
     /* Rating Stepper Styling */

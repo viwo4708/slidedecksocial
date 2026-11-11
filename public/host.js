@@ -13,6 +13,9 @@ const socket = io();
     const playerGrid = document.getElementById('player-grid');
     const playerCount = document.getElementById('player-count');
     const hostStartBtn = document.getElementById('host-start-btn');
+    const endGameBtn = document.getElementById('host-end-game-btn');
+    const newRoomBtn = document.getElementById('new-room-btn');
+    const samePlayersBtn = document.getElementById('same-players-btn');
 
     const submissionGrid = document.getElementById('submission-grid');
     const submittedCount = document.getElementById('submitted-count');
@@ -30,10 +33,58 @@ const socket = io();
 
     startGameBtn.addEventListener('click', () => socket.emit('create_room'));
 
+    endGameBtn.addEventListener('click', () => {
+      if (!window.confirm('End this game for everyone? Players will be returned to the join screen.')) return;
+      endGameBtn.disabled = true;
+      socket.emit('end_game');
+    });
+
+    newRoomBtn.addEventListener('click', () => {
+      if (!window.confirm('End this game and create a new room? Players will need to join with the new room code.')) return;
+      setRestartButtonsDisabled(true);
+      socket.emit('start_new_room');
+    });
+
+    samePlayersBtn.addEventListener('click', () => {
+      if (!window.confirm('Start a new game with the players who have not left? Scores and submissions will reset.')) return;
+      setRestartButtonsDisabled(true);
+      socket.emit('start_same_players_game');
+    });
+
+    function setRestartButtonsDisabled(disabled) {
+      newRoomBtn.disabled = disabled;
+      samePlayersBtn.disabled = disabled;
+    }
+
     socket.on('room_created', ({ roomCode }) => {
       homeScreen.style.display = 'none';
       lobbyScreen.style.display = 'block';
       displayRoomCode.innerText = roomCode;
+      endGameBtn.style.display = 'block';
+      endGameBtn.disabled = false;
+    });
+
+    socket.on('room_ended', () => {
+      hideHostScreens();
+      homeScreen.style.display = 'block';
+      endGameBtn.style.display = 'none';
+      endGameBtn.disabled = false;
+      displayRoomCode.innerText = '----';
+      playerGrid.innerHTML = '';
+      playerCount.innerText = '0';
+      hostStartBtn.style.display = 'none';
+      beginPresentationsBtn.style.display = 'none';
+      setRestartButtonsDisabled(false);
+    });
+
+    socket.on('end_game_failed', () => {
+      endGameBtn.disabled = false;
+      window.alert('The game could not be ended. Please try again.');
+    });
+
+    socket.on('restart_game_failed', (message) => {
+      setRestartButtonsDisabled(false);
+      window.alert(message || 'The game could not be restarted. Please try again.');
     });
 
     socket.on('player_list_updated', (players) => {
@@ -45,22 +96,26 @@ const socket = io();
         div.innerHTML = `<img src="${p.avatar}"><p>${p.username}</p>`;
         playerGrid.appendChild(div);
       });
-      if (players.length > 0) hostStartBtn.style.display = 'inline-block';
+      hostStartBtn.style.display = players.length > 0 ? 'inline-block' : 'none';
     });
 
     hostStartBtn.addEventListener('click', () => socket.emit('host_start_game'));
 
     socket.on('submission_phase_started', (players) => {
+      hideHostScreens();
       lobbyScreen.style.display = 'none';
       submissionScreen.style.display = 'block';
+      endGameBtn.style.display = 'block';
       totalCount.innerText = players.length;
       renderSubmissionGrid(players);
+      beginPresentationsBtn.style.display = 'none';
+      setRestartButtonsDisabled(false);
     });
 
     socket.on('submission_progress_updated', ({ players, allSubmitted }) => {
       submittedCount.innerText = players.filter(p => p.submitted).length;
       renderSubmissionGrid(players);
-      if (allSubmitted) beginPresentationsBtn.style.display = 'inline-block';
+      beginPresentationsBtn.style.display = allSubmitted ? 'inline-block' : 'none';
     });
 
     function renderSubmissionGrid(players) {
@@ -100,7 +155,7 @@ const socket = io();
       } else if (content.type === 'TEXT') {
         slideContent.innerHTML = `<h2>${content.content}</h2>`;
       } else if (content.type === 'CONCLUSION') {
-        slideContent.innerHTML = `<h2 style="color:#bb86fc;">CONCLUSION</h1><p>${content.content}</h2>`;
+        slideContent.innerHTML = `<h2 style="color:#bb86fc;">CONCLUSION</h2><p>${content.content}</p>`;
       }
     });
 
@@ -115,6 +170,8 @@ const socket = io();
     socket.on('show_rankings', (sortedPlayers) => {
       hideHostScreens();
       rankingsScreen.style.display = 'block';
+      endGameBtn.style.display = 'none';
+      setRestartButtonsDisabled(false);
       rankingsList.innerHTML = '';
 
       sortedPlayers.forEach((player, index) => {

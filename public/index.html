@@ -13,8 +13,16 @@
 <body>
 
     <div class="smallheader">
-      <h1>Slide Deck Social</h1>
-      <h4>😂  😭  😁  😋  🫣  🧐</h4>
+      <div class="header-brand">
+        <a href="/" aria-label="Return to home page">
+          <h1>Slide Deck Social</h1>
+        </a>
+        <h4>😂  😭  😁  😋  🫣  🧐</h4>
+      </div>
+      <nav class="smallheader-nav" aria-label="Main navigation">
+        <a href="/how-to-play">How to Play</a>
+        <a href="/about">About</a>
+      </nav>
     </div>
 <!-- 1. Home Screen -->
   <div id="home-screen" class="landing-page">
@@ -23,7 +31,7 @@
     <h2>Your pictures, your topics. Present responsibly!</h2>
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2vh;">
       <button id="start-game-btn">Start a Game</button>
-      <a href="./join" style="text-decoration: none;"><button>Join a Game</button>\</a>
+      <a href="./join" style="text-decoration: none;"><button>Join a Game</button></a>
     </div>
     <!-- TODO: CHANGE THIS WHEN YOU HOST -->
 
@@ -79,7 +87,13 @@
         </div> -->
       </div>
     </div>
+    <div class="ranking-actions">
+      <button id="new-room-btn" type="button">End Game &amp; Start New Room</button>
+      <button id="same-players-btn" type="button">New Game, Same Players</button>
+    </div>
   </div>
+
+  <button id="host-end-game-btn" type="button" style="display: none;">End Game</button>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="./host.js"></script>
