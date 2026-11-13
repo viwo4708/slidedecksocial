@@ -149,13 +149,13 @@ const socket = io();
       slideContent.innerHTML = '';
 
       if (content.type === 'TOPIC') {
-        slideContent.innerHTML = `<h2>${content.content}</h2>`;
+        slideContent.innerHTML = `<h2>TOPIC:</h2><h2>${content.content}</h2>`;
       } else if (content.type === 'PHOTO') {
         slideContent.innerHTML = `<img src="${content.content}">`;
       } else if (content.type === 'TEXT') {
         slideContent.innerHTML = `<h2>${content.content}</h2>`;
       } else if (content.type === 'CONCLUSION') {
-        slideContent.innerHTML = `<h2 style="color:#bb86fc;">CONCLUSION</h2><p>${content.content}</p>`;
+        slideContent.innerHTML = `<h2>${content.content}</h2>`;
       }
     });
 

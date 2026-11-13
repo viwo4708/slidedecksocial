@@ -83,23 +83,12 @@ p {
     }
 
     #leave-game-btn {
-        display: none;
-        position: fixed;
-        left: 50%;
-        bottom: calc(0.75rem + env(safe-area-inset-bottom));
-        transform: translateX(-50%);
-        z-index: 20;
-        width: min(56vw, 220px);
-        max-width: calc(100vw - 2rem);
         height: auto;
-        margin: 0;
-        padding: 0.7rem 1rem;
         font-size: 1.1rem;
+        background: #59c3c3;
     }
 
-    #leave-game-btn.is-visible {
-        display: block;
-    }
+
     .card { 
         background: #ff8892; 
         color: #EBEBEB;
@@ -260,15 +249,20 @@ p {
     }
 
     .step-btn { 
-        width: 50px; 
-        height: 50px; 
-        font-size: 1.8rem; 
+ width: 42px;
+        min-width: 42px;
+        max-width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        padding: 0;
+        margin: 0;
+        font-size: 1.2rem;
+        border-radius: 50%; 
         background: #ff8892; 
         border: none; 
-        border-radius: 50%; 
+        color: white; 
         font-weight: bold; 
         cursor: pointer; 
-        color: white; 
     }
 
     .upload-btn {

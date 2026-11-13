@@ -6,7 +6,7 @@ const socket = io();
     let currentIndex = 0;
     let currentType = '';
     let conclusionIsDisplayed = false;
-    let currentRating = 8; // Default rating value
+    let currentRating = 0; // Default rating value
 
     function saveSession(roomCode, username, reconnectToken) {
       const sessionToken = reconnectToken || getSavedReconnectToken(roomCode, username);
