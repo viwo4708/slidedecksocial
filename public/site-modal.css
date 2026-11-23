@@ -1,0 +1,153 @@
+/* "How to Play" / "About" modal, shared by the host (TV) page and the join (phone) page. */
+.site-modal {
+  width: min(860px, calc(100vw - 32px));
+  max-height: min(88vh, 1100px);
+  padding: 0;
+  border: 3px solid #59c3c3;
+  border-radius: 20px;
+  background: #52489C;
+  color: #EBEBEB;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.site-modal::backdrop {
+  background: rgba(20, 14, 48, 0.72);
+}
+
+.site-modal[open] {
+  display: flex;
+}
+
+.site-modal__panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: inherit;
+  min-height: 0;
+}
+
+.site-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem 0.9rem 1.5rem;
+  border-bottom: 2px solid rgba(235, 235, 235, 0.15);
+  background: #4a4090;
+}
+
+.site-modal__title {
+  margin: 0;
+  font-family: "McLaren", sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: #EBEBEB;
+  text-align: left;
+}
+
+/* Overrides the big pill style that host.css/join.css give every <button>. */
+.site-modal .site-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  min-width: 44px;
+  max-width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #ff8892;
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.site-modal__close:focus-visible {
+  outline: 3px solid #EBEBEB;
+  outline-offset: 2px;
+}
+
+.site-modal__body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.5rem 1.5rem 1.75rem;
+  text-align: left;
+  outline: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.site-modal__body p,
+.site-modal__body li {
+  font-family: "Dosis", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: #EBEBEB;
+}
+
+.site-modal__body .lead {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.site-modal__body h2 {
+  margin: 1.6rem 0 0.4rem;
+  font-family: "McLaren", sans-serif;
+  font-size: 1.6rem;
+  color: #EBEBEB;
+}
+
+.site-modal__body h3 {
+  margin: 1.2rem 0 0.2rem;
+  font-family: "McLaren", sans-serif;
+  font-size: 1.2rem;
+  color: #59c3c3;
+}
+
+.site-modal__body figure {
+  margin: 1.25rem auto;
+  text-align: center;
+}
+
+.site-modal__body img {
+  display: block;
+  width: auto !important;
+  max-width: min(100%, 460px) !important;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.site-modal__loading {
+  text-align: center;
+  opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  .site-modal {
+    width: calc(100vw - 16px);
+    max-height: calc(100dvh - 24px);
+    border-radius: 16px;
+  }
+  .site-modal__header {
+    padding: 0.7rem 0.75rem 0.7rem 1rem;
+  }
+  .site-modal__body {
+    padding: 0.25rem 1rem 1.25rem;
+  }
+  .site-modal__body p,
+  .site-modal__body li {
+    font-size: 1.05rem;
+  }
+  .site-modal__body .lead {
+    font-size: 1.15rem;
+  }
+}
+
+/* The "Join a Game" button at the bottom of the standalone pages isn't needed in the modal. */
+.site-modal__body .page-cta {
+  display: none;
+}

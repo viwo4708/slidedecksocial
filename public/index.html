@@ -1,101 +1,169 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Host-Slide Deck Social</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slide Deck Social – Free PowerPoint Improv Party Game</title>
+  <meta name="description" content="A free online party game for 3–8 friends. Upload your photos, write ridiculous topics, then improvise presentations on slides you've never seen. No app or account needed – play on your phones and a TV.">
+  <link rel="canonical" href="https://slidedecksocial.com/">
+  <meta name="theme-color" content="#52489C">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=McLaren&family=Noto+Color+Emoji&family=Slackey&display=swap" rel="stylesheet">  
-<link rel="stylesheet" href="host.css">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Slide Deck Social">
+  <meta property="og:title" content="Slide Deck Social – the PowerPoint improv party game">
+  <meta property="og:description" content="Your pictures, your topics. Improvise presentations on slides your friends pick. Free, no app needed.">
+  <meta property="og:url" content="https://slidedecksocial.com/">
+  <meta property="og:image" content="https://slidedecksocial.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Slide Deck Social – your pictures, your topics. Present responsibly!">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://slidedecksocial.com/#website",
+        "name": "Slide Deck Social",
+        "url": "https://slidedecksocial.com/"
+      },
+      {
+        "@type": ["VideoGame", "WebApplication"],
+        "name": "Slide Deck Social",
+        "url": "https://slidedecksocial.com/",
+        "description": "A free browser-based presentation improv party game for 3 to 8 players. Players upload photos and write topics, then take turns presenting slide decks they have never seen while a slidemaster picks the slides.",
+        "genre": ["Party game", "Improv", "Social game"],
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any (web browser)",
+        "gamePlatform": ["Web browser", "Mobile web"],
+        "playMode": ["MultiPlayer", "CoOp"],
+        "numberOfPlayers": { "@type": "QuantitativeValue", "minValue": 3, "maxValue": 8 },
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "creator": { "@type": "Person", "name": "Vikki Wong", "url": "https://www.vikkiwong.com" },
+        "image": "https://slidedecksocial.com/og-image.png"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=McLaren&family=Noto+Color+Emoji&family=Slackey&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/host.css">
+  <link rel="stylesheet" href="/site-modal.css">
 </head>
 <body>
 
-    <div class="smallheader">
-      <div class="header-brand">
-        <a href="/" aria-label="Return to home page">
-          <h1>Slide Deck Social</h1>
-        </a>
-        <h4>😂  😭  😁  😋  🫣  🧐</h4>
+  <header class="smallheader">
+    <div class="header-brand">
+      <a href="/" class="brand-link" aria-label="Slide Deck Social home"><span class="brand-name">Slide Deck Social</span></a>
+      <span class="brand-emoji" aria-hidden="true">😂  😭  😁  😋  🫣  🧐</span>
+    </div>
+    <nav class="smallheader-nav" aria-label="Main navigation">
+      <a href="/how-to-play/" data-modal="how-to-play">How to Play</a>
+      <a href="/about/" data-modal="about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. Home Screen -->
+    <section id="home-screen" class="landing-page">
+      <h1 class="landing-title"><span aria-hidden="true">sliDe dEcK soCiAL</span><span class="visually-hidden">Slide Deck Social</span></h1>
+      <p class="landing-emoji" aria-hidden="true">😂  😭  😁  😋  🫣  🧐</p>
+      <p class="tagline">Your pictures, your topics. Present responsibly!</p>
+
+      <div class="cta-group">
+        <a href="/join/" class="cta-join" id="join-game-link">Join a Game</a>
+        <p class="cta-hint">Got a room code? Tap here on your phone.</p>
+
+        <div class="host-option">
+          <button id="start-game-btn" type="button" class="cta-host">Host a Game</button>
+          <span class="host-option__hint">Best on a TV or laptop everyone can see</span>
+        </div>
+        <p id="home-notice" class="home-notice" role="status"></p>
       </div>
-      <nav class="smallheader-nav" aria-label="Main navigation">
-        <a href="/how-to-play">How to Play</a>
-        <a href="/about">About</a>
-      </nav>
-    </div>
-<!-- 1. Home Screen -->
-  <div id="home-screen" class="landing-page">
-    <h1>sliDe dEcK soCiAL</h1>
-    <h4>😂  😭  😁  😋  🫣  🧐</h4>
-    <h2>Your pictures, your topics. Present responsibly!</h2>
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2vh;">
-      <button id="start-game-btn">Start a Game</button>
-      <a href="./join" style="text-decoration: none;"><button>Join a Game</button></a>
-    </div>
-    <!-- TODO: CHANGE THIS WHEN YOU HOST -->
 
-  </div>
+      <section class="home-intro" aria-labelledby="intro-heading">
+        <h2 id="intro-heading">The PowerPoint party game where nobody's seen the slides</h2>
+        <p>
+          Slide Deck Social is a free online improv game for 3–8 friends. Everyone uploads six photos from
+          their camera roll and writes two presentation topics. Then each player takes a turn presenting a
+          random topic while a <strong>slidemaster</strong> picks the photos and phrases that pop up behind
+          them. Everyone else rates the talk out of 10.
+        </p>
+        <ul class="feature-list">
+          <li>Free, with no app or account</li>
+          <li>Play in person or over Zoom and Discord</li>
+          <li>Photos are deleted when the game ends</li>
+        </ul>
+        <p class="home-intro__more"><a href="/how-to-play/" data-modal="how-to-play">Read the full rules</a></p>
+      </section>
+    </section>
 
-  <!-- 2. Lobby Screen -->
-  <div id="lobby-screen" style="display: none;">
-      <h2 style="font-size: 2vw; margin-bottom: 0; margin-top: 2vh;">Join Room with Code:</h2>
+    <!-- 2. Lobby Screen -->
+    <section id="lobby-screen" style="display: none;">
+      <p class="lobby-instructions">On your phone, go to <strong class="join-url">slidedecksocial.com/join</strong> and enter</p>
       <div id="display-room-code" class="room-code">----</div>
-      <h3 style="font-size: 2vw; margin-top: 0;"><span id="player-count">0</span>/8 Players Joined</h3>
-    <div id="player-grid" class="player-grid"></div>
-    <br><br>
-    <button id="host-start-btn" style="display:none;">Start Game</button>
-  </div>
+      <h2 class="lobby-count"><span id="player-count">0</span>/8 Players Joined</h2>
+      <div id="player-grid" class="player-grid"></div>
+      <p id="lobby-hint" class="lobby-hint">Waiting for players… (3–8 players works best)</p>
+      <button id="host-start-btn" type="button" style="display:none;">Start Game</button>
+    </section>
 
-  <!-- 3. Submissions Screen -->
-  <div id="submission-screen" style="display: none;">
-    <h1>Add your pictures and come up with your topics!</h1>
-    <p>Look at your phones to complete Step 1 & Step 2.</p>
-    <h2>Submissions Status (<span id="submitted-count">0</span>/<span id="total-count">0</span>)</h2>
-    <div id="submission-grid" class="player-grid"></div>
-    <br>
-    <button id="begin-presentations-btn" style="display: none;">Begin Presentations!</button>
-  </div>
+    <!-- 3. Submissions Screen -->
+    <section id="submission-screen" style="display: none;">
+      <h2 class="screen-title">Add your pictures and come up with your topics!</h2>
+      <p class="screen-subtitle">Look at your phones to complete Step 1 &amp; Step 2.</p>
+      <h2>Submissions Status (<span id="submitted-count">0</span>/<span id="total-count">0</span>)</h2>
+      <div id="submission-grid" class="player-grid"></div>
+      <p class="lobby-hint">Late arrivals can still join with code <strong class="room-code-inline"></strong></p>
+      <button id="begin-presentations-btn" type="button" style="display: none;">Begin Presentations!</button>
+    </section>
 
-  <!-- 4. Countdown Screen -->
-  <div id="countdown-screen" style="display: none;">
-    <h2 id="announce-presenter" style="color: #59c3c3; font-size: 3rem;">PLAYER, YOU'RE PRESENTING!</h1>
-    <h2 id="announce-slidemaster" style="color: #EBEBEB;">Slidemaster: PLAYER2</h2>
-    <h1 id="host-countdown" style="font-size: 5rem; margin: 20px 0;">10</h1>
-  </div>
+    <!-- 4. Countdown Screen -->
+    <section id="countdown-screen" style="display: none;">
+      <h2 id="announce-presenter" class="announce-presenter">PLAYER, YOU'RE PRESENTING!</h2>
+      <h2 id="announce-slidemaster" class="announce-slidemaster">Slidemaster: PLAYER2</h2>
+      <p id="host-countdown" class="host-countdown">10</p>
+    </section>
 
-  <!-- 5. Slide Presentation Stage -->
-  <div id="presentation-stage" class="slide-stage" style="display: none;">
-    <div id="slide-counter" class="slide-counter">1/10</div>
-    <div id="slide-content" class="slide-content"></div>
-  </div>
+    <!-- 5. Slide Presentation Stage -->
+    <section id="presentation-stage" class="slide-stage" style="display: none;" aria-live="polite">
+      <div id="slide-counter" class="slide-counter">1/10</div>
+      <div id="slide-content" class="slide-content"></div>
+    </section>
 
-  <!-- 6. Rating Phase Screen -->
-  <div id="host-rating-screen" style="display: none;">
-    <h1 style="font-size: 3rem;">Presentation Complete!</h1>
-    <h2 style="color: #59c3c3; font-size: 2.5rem;">Players are rating <span id="rating-presenter-title"></span>...</h2>
-    <p style="font-size: 2.2rem;">Check phones to submit ratings & comments.</p>
-  </div>
+    <!-- 6. Rating Phase Screen -->
+    <section id="host-rating-screen" style="display: none;">
+      <h2 class="screen-title">Presentation Complete!</h2>
+      <h2 class="rating-subtitle">Players are rating <span id="rating-presenter-title"></span>...</h2>
+      <p class="rating-hint">Check phones to submit ratings &amp; comments.</p>
+    </section>
 
-  <!-- 7. Final Rankings Leaderboard Screen -->
-  <div id="rankings-screen" style="display: none;">
-    <h1 style="color: #59c3c3; font-size: 2.5rem;">Final Rankings</h1>
-    <div style="display: flex; flex-direction: column; align-content: center; align-items: center;">
-      <div id="rankings-list" style="margin-top: 20px; width: 100%;">
-        <!-- <div class="ranking-top-3 ranking-row">
-          <span><b style="font-size: 3rem;">1</b> USERNAME1</span><span style="font-weight: bold;">38 pts</span>
-        </div> -->
+    <!-- 7. Final Rankings Leaderboard Screen -->
+    <section id="rankings-screen" style="display: none;">
+      <h2 class="rankings-title">Final Rankings</h2>
+      <div class="rankings-wrap">
+        <div id="rankings-list"></div>
       </div>
-    </div>
-    <div class="ranking-actions">
-      <button id="new-room-btn" type="button">End Game &amp; Start New Room</button>
-      <button id="same-players-btn" type="button">New Game, Same Players</button>
-    </div>
-  </div>
+      <div class="ranking-actions">
+        <button id="new-room-btn" type="button">End Game &amp; Start New Room</button>
+        <button id="same-players-btn" type="button">New Game, Same Players</button>
+      </div>
+    </section>
+  </main>
 
   <button id="host-end-game-btn" type="button" style="display: none;">End Game</button>
 
   <script src="/socket.io/socket.io.js"></script>
-  <script src="./host.js"></script>
+  <script src="/site-modal.js"></script>
+  <script src="/host.js"></script>
 </body>
 </html>

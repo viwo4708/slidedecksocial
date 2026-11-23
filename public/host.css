@@ -1,35 +1,50 @@
- body { 
-        font-family: sans-serif; 
-        text-align: center; 
-        background: #52489C; 
-        color: white; 
-        padding: 10px; 
-    }
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background: #52489C;
+    color: white;
+    padding: 10px;
+    margin: 0;
+}
 
 h1 {
     font-family: "Slackey";
-     color: #ff8892;
+    color: #ff8892;
 }
 
 h2, h3 {
     font-family: "McLaren";
 }
 
-p {
+p, li {
     font-family: "Dosis";
 }
 
 a {
-    color:#59c3c3;
+    color: #59c3c3;
 }
 
 a:hover {
-    color:#92eaea;
+    color: #92eaea;
 }
 
 a:visited {
-    color:#59c3c3;
+    color: #59c3c3;
 }
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ---------- Header ---------- */
 
 .smallheader {
     display: flex;
@@ -53,12 +68,14 @@ a:visited {
     color: inherit;
 }
 
-.smallheader h1 {
+.brand-name {
+    font-family: "Slackey";
+    color: #ff8892;
     font-size: 2vw;
     margin: 0;
 }
 
-.smallheader h4 {
+.brand-emoji {
     font-family: "Noto Color Emoji";
     font-size: 2vw;
     margin: 0;
@@ -71,175 +88,487 @@ a:visited {
     margin-left: auto;
 }
 
-.smallheader-nav a {
+.smallheader-nav a,
+.smallheader-nav a:visited {
     font-family: "Dosis";
     font-size: 1.5rem;
     color: #EBEBEB;
     text-decoration: none;
     font-weight: 600;
 }
-    .card { 
-        background: #ff8892; 
-        color: #EBEBEB;
-        padding: 20px; 
-        border-radius: 10px; 
-        display: inline-block; 
-        margin-top: 20px; 
-    }
 
-    .landing-page {
-        background: #52489C; 
-    }
+.smallheader-nav a:hover {
+    color: #92eaea;
+}
 
-    .landing-page h1 {
-        font-size: 7vw;
-        margin-bottom: 0;
-        margin-top: 0;
-    }
+.card {
+    background: #ff8892;
+    color: #EBEBEB;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 20px;
+}
 
-    .landing-page h2 {
-        color: #EBEBEB;
-        font-size: 3vw;
-        margin-top: 3vh;
-    }
+/* ---------- Home ---------- */
 
-    button {
-        background-color: #59c3c3;
-        display: block;
-        width: 50vw;
-        height: 10vh;
-        border-radius: 50px;
-        font-family: "McLaren";
-        color: #EBEBEB;
-        font-size: 2rem;
-    }
+.landing-page {
+    background: #52489C;
+}
 
-    #host-end-game-btn {
-        position: fixed;
-        left: 1rem;
-        bottom: 1rem;
-        z-index: 20;
-        width: auto;
-        min-width: 0;
-        max-width: calc(100vw - 2rem);
-        height: auto;
-        margin: 0;
-        padding: 0.7rem 1.1rem;
-        border: 0;
-        border-radius: 50px;
-        font-family: "McLaren";
-        font-size: 1rem;
-        cursor: pointer;
-    }
+.landing-title {
+    font-size: 7vw;
+    margin-bottom: 0;
+    margin-top: 0;
+}
 
-    .ranking-actions {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-        width: 100%;
-        margin: 2rem auto 1.5rem;
-        padding: 0 1rem;
-        box-sizing: border-box;
-    }
+.landing-emoji {
+    font-family: "Noto Color Emoji";
+    font-size: 7vw;
+    margin-top: 0;
+    margin-bottom: 0;
+}
 
-    .ranking-actions button {
-        width: min(38vw, 320px);
-        min-width: 220px;
-        max-width: calc(100vw - 2rem);
-        height: auto;
-        min-height: 64px;
-        padding: 0.75rem 1rem;
-        font-size: 1.05rem;
-        cursor: pointer;
-    }
+.tagline {
+    font-family: "McLaren";
+    color: #EBEBEB;
+    font-size: 3vw;
+    margin: 3vh 0 4vh;
+}
 
-    .landing-page h4 {
-        font-family: "Noto Color Emoji";
-        font-size: 7vw;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
+button {
+    background-color: #59c3c3;
+    display: block;
+    width: 50vw;
+    height: 10vh;
+    border-radius: 50px;
+    font-family: "McLaren";
+    color: #EBEBEB;
+    font-size: 2rem;
+    margin: 0 auto;
+    cursor: pointer;
+}
 
-    .room-code { 
-        font-size: 6vw; 
-        font-family: "Slackey";
-        letter-spacing: 5px; 
-        color: #59c3c3; 
-        margin: 10px 0; 
-    }
-    .player-grid { 
-        display: flex; 
-        flex-wrap: wrap; 
-        justify-content: center; 
-        gap: 20px; 
-        margin-top: 30px; 
-    }
-    .player-card { 
-        background: #ff8892; 
-        color: #EBEBEB;
-        padding: 15px; 
-        border-radius: 8px; 
-        width: 120px; 
-    }
-    .player-card img { 
-        width: 80px; 
-        height: 80px; 
-    }
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
 
-    /* Presentation Slide Stage Styling */
-    .slide-stage { 
-        background: #9789ff; 
-        border: 3px solid #6b58fe; 
-        width: 80vw; 
-        /* max-width: 900px;  */
-        height: 80vh; 
-        margin: 20px auto; 
-        display: flex; 
-        flex-direction: column; 
-        justify-content: center; 
-        align-items: center; 
-        position: relative; 
-        padding: 20px; 
-    }
-    .slide-counter { 
-        position: absolute; 
-        top: 15px; 
-        right: 20px; 
-        font-size: 2rem; 
-        font-family: "McLaren";
-        font-weight: bold; 
-        color: #EBEBEB; 
-    }
-    .slide-content img { 
-        max-width: 100%; 
-        max-height: 70vh; 
-        border-radius: 8px; 
-    }
-    .slide-content h2 { 
-        font-size: 4rem; 
-        color: #EBEBEB; 
-        text-align: left;
-    }
+.cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Joining is what most visitors (on phones) want, so it's the big button. */
+.cta-join,
+.cta-join:visited {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: min(60vw, 720px);
+    min-height: clamp(84px, 13vh, 130px);
+    padding: 0.5rem 2rem;
+    border-radius: 999px;
+    background: #ff8892;
+    color: #fff;
+    font-family: "McLaren";
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    text-decoration: none;
+    box-shadow: 0 10px 0 #d9606b, 0 18px 30px rgba(0, 0, 0, 0.25);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.cta-join:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 0 #d9606b, 0 22px 34px rgba(0, 0, 0, 0.28);
+}
+
+.cta-join:active {
+    transform: translateY(6px);
+    box-shadow: 0 4px 0 #d9606b, 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.cta-join:focus-visible,
+.cta-host:focus-visible {
+    outline: 4px solid #EBEBEB;
+    outline-offset: 4px;
+}
+
+.cta-hint {
+    margin: 0.75rem 0 1.5rem;
+    font-size: 1.3rem;
+    color: #EBEBEB;
+}
+
+.host-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+/* Hosting is a secondary action: smaller, outlined. */
+button.cta-host {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid #59c3c3;
+    border-radius: 999px;
+    background: transparent;
+    color: #EBEBEB;
+    font-size: 1.15rem;
+}
+
+button.cta-host:hover {
+    background: rgba(89, 195, 195, 0.18);
+}
+
+.host-option__hint {
+    font-family: "Dosis";
+    font-size: 1.05rem;
+    color: #c9c3ef;
+}
+
+.home-notice {
+    min-height: 1.2em;
+    margin: 0;
+    font-size: 1.2rem;
+    color: #ffd2d6;
+}
+
+.home-intro {
+    max-width: 760px;
+    margin: 4rem auto 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.12);
+    text-align: left;
+}
+
+.home-intro h2 {
+    margin-top: 0;
+    font-size: 1.6rem;
+    color: #EBEBEB;
+}
+
+.home-intro p,
+.home-intro li {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: #EBEBEB;
+}
+
+.feature-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+.feature-list li {
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(89, 195, 195, 0.2);
+    font-size: 1.05rem;
+}
+
+.home-intro__more {
+    margin-bottom: 0;
+}
+
+/* ---------- Host game screens ---------- */
+
+#host-end-game-btn {
+    position: fixed;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 20;
+    width: auto;
+    min-width: 0;
+    max-width: calc(100vw - 2rem);
+    height: auto;
+    margin: 0;
+    padding: 0.7rem 1.1rem;
+    border: 0;
+    border-radius: 50px;
+    font-family: "McLaren";
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.lobby-instructions {
+    margin: 2vh 0 0;
+    font-family: "McLaren";
+    font-size: clamp(1.1rem, 2vw, 2rem);
+    color: #EBEBEB;
+}
+
+.lobby-instructions strong {
+    color: #59c3c3;
+}
+
+.lobby-count {
+    font-size: clamp(1.1rem, 2vw, 2rem);
+    margin-top: 0;
+}
+
+.lobby-hint {
+    font-size: 1.3rem;
+    color: #EBEBEB;
+    margin: 2rem 0 1rem;
+}
+
+.screen-title {
+    font-family: "Slackey";
+    color: #ff8892;
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+}
+
+.screen-subtitle {
+    font-size: 1.3rem;
+}
+
+.announce-presenter {
+    color: #59c3c3;
+    font-size: 3rem;
+}
+
+.announce-slidemaster {
+    color: #EBEBEB;
+}
+
+.host-countdown {
+    font-family: "Slackey";
+    color: #ff8892;
+    font-size: 5rem;
+    margin: 20px 0;
+}
+
+.rating-subtitle {
+    color: #59c3c3;
+    font-size: 2.5rem;
+}
+
+.rating-hint {
+    font-size: 2.2rem;
+}
+
+.rankings-title {
+    font-family: "Slackey";
+    color: #59c3c3;
+    font-size: 2.5rem;
+}
+
+.rankings-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#rankings-list {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.ranking-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    margin: 2rem auto 1.5rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.ranking-actions button {
+    width: min(38vw, 320px);
+    min-width: 220px;
+    max-width: calc(100vw - 2rem);
+    height: auto;
+    min-height: 64px;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    font-size: 1.05rem;
+    cursor: pointer;
+}
+
+.room-code {
+    font-size: 6vw;
+    font-family: "Slackey";
+    letter-spacing: 5px;
+    color: #59c3c3;
+    margin: 10px 0;
+}
+
+.player-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.player-card {
+    background: #ff8892;
+    color: #EBEBEB;
+    padding: 15px;
+    border-radius: 8px;
+    width: 120px;
+}
+
+.player-card p {
+    overflow-wrap: anywhere;
+}
+
+.player-card--offline {
+    opacity: 0.55;
+}
+
+.player-card img {
+    width: 80px;
+    height: 80px;
+}
+
+/* Presentation Slide Stage Styling */
+.slide-stage {
+    background: #9789ff;
+    border: 3px solid #6b58fe;
+    width: 80vw;
+    height: 80vh;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+}
+
+.slide-counter {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    font-family: "McLaren";
+    font-weight: bold;
+    color: #EBEBEB;
+}
+
+.slide-content img {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 8px;
+}
+
+.slide-content h2 {
+    font-size: 4rem;
+    color: #EBEBEB;
+    text-align: left;
+    overflow-wrap: anywhere;
+}
 
 /* Rankings Board Styling */
-    .ranking-row { 
-        display: flex; 
-        justify-content: space-between; 
-        align-items: center; 
-        background: #EBEBEB; 
-        color: #52489C;
-        padding: 12px 20px; 
-        border-radius: 8px; 
-        margin: 10px auto; 
-        width: 60%; 
-        max-width: 500px; 
-        font-size: 1.3rem; 
-    }
-    .ranking-top-3 { 
-        border: 9px solid #59c3c3; 
-    }
+.ranking-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #EBEBEB;
+    color: #52489C;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin: 10px auto;
+    width: 60%;
+    max-width: 500px;
+    font-size: 1.3rem;
+}
+
+.ranking-rank {
+    font-size: 3rem;
+}
+
+.ranking-score {
+    font-weight: bold;
+}
+
+.ranking-left {
+    opacity: 0.7;
+}
+
+.ranking-top-3 {
+    border: 9px solid #59c3c3;
+}
+
+/* ---------- How to Play / About pages ---------- */
+
+.pagecontent {
+    max-width: 960px;
+    margin: 2rem auto 4rem;
+    padding: 0 2rem;
+    text-align: left;
+}
+
+.page-title {
+    font-family: "McLaren";
+    color: #EBEBEB;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.pagecontent h2 {
+    font-size: 2.2rem;
+    color: #EBEBEB;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.pagecontent h3 {
+    font-size: 1.5rem;
+    color: #59c3c3;
+    margin: 1.75rem 0 0.25rem;
+}
+
+.pagecontent p,
+.pagecontent li {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: #EBEBEB;
+}
+
+.pagecontent .lead {
+    font-size: 1.85rem;
+    font-weight: bold;
+}
+
+.pagecontent figure {
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.pagecontent figure img {
+    width: auto;
+    max-width: min(100%, 560px);
+    height: auto;
+    border-radius: 12px;
+}
+
+.page-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.page-cta .cta-join {
+    margin: 0 auto;
+}
 
 @media (max-width: 768px) {
     body {
@@ -262,31 +591,54 @@ a:visited {
         gap: 0.35rem;
     }
 
-    .smallheader h1 {
+    .brand-name {
         font-size: clamp(1.05rem, 5vw, 1.4rem);
         white-space: nowrap;
     }
 
-    .smallheader h4 {
+    .brand-emoji {
         font-size: clamp(0.8rem, 3.8vw, 1rem);
         white-space: nowrap;
     }
 
-    .landing-page h1 {
+    .landing-title,
+    .landing-emoji {
         display: none;
     }
 
-    .landing-page h4 {
-        display: none;
-    }
-
-    .landing-page h2 {
+    .tagline {
         font-size: 1.5rem;
+        margin: 2.5rem 1rem 2rem;
     }
 
-    .landing-page button {
-        width: 80vw;
-        font-size: 2.1rem;
+    .cta-join,
+    .cta-join:visited {
+        width: calc(100vw - 2rem);
+        min-height: 96px;
+        font-size: 2.3rem;
+    }
+
+    .cta-hint {
+        font-size: 1.1rem;
+    }
+
+    .host-option {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .home-intro {
+        margin: 3rem 1rem 2rem;
+        padding: 1.25rem;
+    }
+
+    .home-intro h2 {
+        font-size: 1.35rem;
+    }
+
+    .home-intro p,
+    .home-intro li {
+        font-size: 1.05rem;
     }
 
     .smallheader-nav {
@@ -300,8 +652,13 @@ a:visited {
         margin-top: 0.25rem;
     }
 
-    .smallheader-nav a {
+    .smallheader-nav a,
+    .smallheader-nav a:visited {
         font-size: 1.4rem;
+    }
+
+    button {
+        width: 80vw;
     }
 
     .ranking-actions {
@@ -315,25 +672,37 @@ a:visited {
         min-width: 0;
     }
 
+    .ranking-row {
+        width: 90%;
+    }
+
     .pagecontent {
-        margin: 0 !important;
+        margin: 0;
         padding: 0 0.75rem 1.5rem;
     }
 
+    .page-title {
+        font-size: 2.2rem;
+    }
+
+    .pagecontent h2 {
+        font-size: 1.7rem;
+    }
+
     .pagecontent p,
-    .pagecontent strong,
-    .pagecontent a {
-        font-size: 1.05rem !important;
+    .pagecontent li {
+        font-size: 1.05rem;
         line-height: 1.5;
     }
 
-    img,
-    .pagecontent img,
-    .photo-grid img,
-    .carousel-view img,
+    .pagecontent .lead {
+        font-size: 1.2rem;
+    }
+
+    .pagecontent figure img,
     .slide-content img {
-        width: 100% !important;
-        max-width: 100% !important;
+        width: 100%;
+        max-width: 100%;
         height: auto;
         display: block;
     }

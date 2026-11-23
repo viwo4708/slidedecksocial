@@ -2,120 +2,149 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join-Slide Deck Social</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Join a Game – Slide Deck Social</title>
+  <meta name="description" content="Enter your 4-letter room code to join a game of Slide Deck Social, the free presentation improv party game. No app download needed.">
+  <link rel="canonical" href="https://slidedecksocial.com/join/">
+  <meta name="theme-color" content="#52489C">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Slide Deck Social">
+  <meta property="og:title" content="Join a game of Slide Deck Social">
+  <meta property="og:description" content="Got a room code? Join the presentation improv party game from your phone.">
+  <meta property="og:url" content="https://slidedecksocial.com/join/">
+  <meta property="og:image" content="https://slidedecksocial.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=McLaren&family=Noto+Color+Emoji&family=Slackey&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="join.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=McLaren&family=Noto+Color+Emoji&family=Slackey&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/join/join.css">
+  <link rel="stylesheet" href="/site-modal.css">
 </head>
 <body>
 
-    <!-- 1. Join Form -->
+  <header class="smallheader">
+    <div class="header-brand">
+      <a href="/" class="brand-link"><span class="brand-name">Slide Deck Social</span></a>
+      <span class="brand-emoji" aria-hidden="true">😂😭🫣🧐</span>
+    </div>
+    <nav class="smallheader-nav" aria-label="Help">
+      <a href="/how-to-play/" data-modal="how-to-play">How to Play</a>
+    </nav>
+  </header>
 
-  <div class="smallheader">
-      <div class="header-brand">
-        <a href="../index.html" style="text-decoration: none;"><h1>Slide Deck Social</h1></a>
-        <h4>😂😭🫣🧐</h4>
+  <main>
+    <!-- Join Form -->
+    <form id="join-form" style="display: block;" novalidate>
+      <h1 class="page-heading">Join A Game</h1>
+      <label for="room-code-input" class="visually-hidden">Room code</label>
+      <input type="text" id="room-code-input" name="code" placeholder="ROOM CODE" maxlength="4"
+             autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="next" required>
+      <label for="username-input" class="visually-hidden">Your name</label>
+      <input type="text" id="username-input" name="name" placeholder="YOUR NAME" maxlength="15"
+             autocomplete="nickname" enterkeyhint="go" required>
+      <button id="join-btn" type="submit">JOIN</button>
+      <p id="error-msg" class="error-msg" role="alert"></p>
+    </form>
+
+    <section id="lobby-waiting" style="display: none;">
+      <h2 class="page-heading">You're In!</h2>
+      <p class="waiting-text">Waiting for host to start game...</p>
+    </section>
+
+    <section id="step-photos" style="display: none;">
+      <h2>Step 1: Add your photos!</h2>
+      <p>Pick 6 photos from your camera roll. Weird, funny, random — anything goes.</p>
+      <label class="upload-btn" id="upload-label">
+        Add Photos
+        <input type="file" id="photo-input" accept="image/*" multiple hidden>
+      </label>
+      <p id="photo-status" class="photo-status" aria-live="polite">0 / 6 photos added</p>
+      <div id="photo-preview" class="photo-grid"></div>
+      <button id="clear-photos-btn" type="button" class="link-btn" style="display: none;">Start over</button>
+      <button id="next-to-topics-btn" type="button" style="display: none;">Next: Add Topics</button>
+    </section>
+
+    <section id="step-topics" style="display: none;">
+      <h2>Step 2: Come up with 2 topics!</h2>
+      <p>Give someone something ridiculous to present on.</p>
+      <label for="topic1" class="visually-hidden">Topic 1</label>
+      <input type="text" id="topic1" placeholder="Topic 1 (max 125 chars)" maxlength="125" enterkeyhint="next">
+      <label for="topic2" class="visually-hidden">Topic 2</label>
+      <input type="text" id="topic2" placeholder="Topic 2 (max 125 chars)" maxlength="125" enterkeyhint="done">
+      <button id="submit-content-btn" type="button">Submit Topics</button>
+      <p id="submit-error" class="error-msg" role="alert"></p>
+    </section>
+
+    <section id="submitted-waiting" style="display: none;">
+      <h2 id="waiting-title">Submissions Received!</h2>
+      <p id="waiting-subtitle">Waiting for other players...</p>
+    </section>
+
+    <section id="countdown-screen" style="display: none;">
+      <h2>Get Ready!</h2>
+      <p id="countdown-role" class="countdown-role"></p>
+      <p id="countdown-timer" class="countdown-timer">10</p>
+    </section>
+
+    <section id="presenter-screen" class="card" style="display: none;">
+      <h2>YOU'RE PRESENTING!</h2>
+      <p>Start talking and watch the TV screen!</p>
+      <p><b>Topic:</b> <span id="presenter-topic-display"></span></p>
+    </section>
+
+    <section id="audience-screen" class="card" style="display: none;">
+      <h2>Shhhh.....</h2>
+      <p><span id="audience-presenter-name"></span> is presenting!</p>
+    </section>
+
+    <section id="slidemaster-screen" style="display: none;">
+      <h3 class="sm-title">SLIDEMASTER CONTROLS</h3>
+      <p class="sm-subtitle">Queueing up <b>Slide <span id="next-slide-num">2</span></b> for <span id="sm-presenter-name"></span>:</p>
+
+      <div class="carousel-container">
+        <button class="nav-btn" id="prev-btn" type="button" aria-label="Previous option">&lt;</button>
+        <div id="carousel-view" class="carousel-view"></div>
+        <button class="nav-btn" id="next-btn" type="button" aria-label="Next option">&gt;</button>
       </div>
-    </div>
- <!-- Join Form -->
-  <div id="join-form" style="display: block;">
-    <h2 style="font-size: 10vw;">Join A Game</h2>
-    <input type="text" id="room-code-input" placeholder="ROOM CODE" maxlength="4"><br>
-    <input type="text" id="username-input" placeholder="YOUR USERNAME" maxlength="15"><br>
-    <button id="join-btn">JOIN</button>
-    <p id="error-msg" style="color: #ff8892"></p>
-  </div>
 
-  <div id="lobby-waiting" style="display: none;">
-    <h2 style="font-size: 10vw;;">You're In!</h2>
-    <p style="font-family: 'McLaren';">Waiting for host to start game...</p>
-  </div>
+      <button id="advance-slide-btn" type="button">Advance Slide &gt;</button>
+    </section>
 
-  <div id="step-photos" style="display: none;">
-    <h2>Step 1: Add your photos!</h2>
-    <p>Please add exactly 6 photos.</p>
-    <br>
-    <label class="upload-btn">
-      Add Photos
-      <input type="file" id="photo-input" accept="image/*" multiple style="display: none;">
-    </label>
-    <div id="photo-preview" class="photo-grid"></div>
-    <button id="next-to-topics-btn" style="display: none;">Next: Add Topics</button>
-  </div>
+    <!-- Rating Screen -->
+    <section id="rating-screen" style="display: none;">
+      <h3 class="rating-title">Rate Presentation</h3>
+      <p>How was <span id="rating-presenter-name"></span>'s presentation?</p>
 
-  <div id="step-topics" style="display: none;">
-    <h3>Step 2: Come up with 2 topics!</h3>
-    <input type="text" id="topic1" placeholder="Topic 1 (max 125 chars)" maxlength="125"><br>
-    <input type="text" id="topic2" placeholder="Topic 2 (max 125 chars)" maxlength="125"><br>
-    <button id="submit-content-btn">Submit Topics</button>
-  </div>
+      <div class="stepper-container">
+        <button class="step-btn" id="decrement-rating" type="button" aria-label="Lower rating">-</button>
+        <div id="rating-value" class="rating-number" aria-live="polite">8</div>
+        <button class="step-btn" id="increment-rating" type="button" aria-label="Raise rating">+</button>
+      </div>
+      <p class="rating-out-of">out of 10</p>
 
-  <div id="submitted-waiting" style="display: none;">
-    <h2 id="waiting-title">Submissions Received!</h2>
-    <p id="waiting-subtitle">Waiting for other players...</p>
-  </div>
+      <label for="comment-input" class="visually-hidden">Comment (optional)</label>
+      <textarea id="comment-input" placeholder="Leave a comment (optional)" maxlength="150"></textarea>
+      <button id="submit-rating-btn" type="button">Submit Rating</button>
+    </section>
 
-  <div id="countdown-screen" style="display: none;">
-    <h2>Get Ready!</h2>
-    <h1 id="countdown-timer" style="font-size: 3rem; color: #EBEBEB">10</h1>
-  </div>
-
-  <div id="presenter-screen" class="card" style="display: none;">
-    <h2>YOU'RE PRESENTING!</h2>
-    <p>Start talking and watch the TV screen!</p>
-    <p><b>Topic:</b> <span id="presenter-topic-display"></span></p>
-  </div>
-
-  <div id="audience-screen" class="card" style="display: none;">
-    <h2>Shhhh.....</h2>
-    <p><span id="audience-presenter-name"></span> is presenting!</p>
-  </div>
-
-  <div id="slidemaster-screen" style="display: none;">
-    <h3 style="color: #EBEBEB; margin-bottom: 5px;">SLIDEMASTER CONTROLS</h3>
-    <p style="margin: 5px 0;">Queueing up <b>Slide <span id="next-slide-num">2</span></b> for <span id="sm-presenter-name"></span>:</p>
-    <!-- <p style="font-size: 0.9rem; color: #00e676;">Type: <b><span id="next-slide-type-label">PHOTO</span> SCROLLER</b></p> -->
-
-    <div class="carousel-container">
-      <button class="nav-btn" id="prev-btn">&lt;</button>
-      <div id="carousel-view" class="carousel-view"></div>
-      <button class="nav-btn" id="next-btn">&gt;</button>
-    </div>
-
-    <button id="advance-slide-btn">Advance Slide &gt;</button>
-  </div>
-
-  <!-- Rating Screen -->
-  <div id="rating-screen" style="display: none;">
-    <h3 style="color: #EBEBEB;">Rate Presentation</h3>
-    <p>How was <span id="rating-presenter-name"></span>'s presentation?</p>
-
-    <div class="stepper-container">
-      <button class="step-btn" id="decrement-rating">-</button>
-      <div id="rating-value" class="rating-number">0</div>
-      <button class="step-btn" id="increment-rating">+</button>
-    </div>
-    <p style="font-size: 0.9rem; color: #EBEBEB; margin: 0;">out of 10</p>
-
-    <br>
-    <textarea id="comment-input" placeholder="Leave a comment (optional)" maxlength="150"></textarea><br>
-    <button id="submit-rating-btn">Submit Rating</button>
-  </div>
-
-  <!-- End Game / Personal Feedback Screen -->
-  <div id="feedback-screen" style="display: none;">
-    <h2>Nice Job Presenting!</h2>
-    <p>Your Final Score: <span id="my-final-score" style="color: #ff8892; font-weight: bold; font-size: 1.3rem;">0</span></p>
-    <h3>Comments:</h3>
-    <div id="my-comments-list" style="max-height: 200px; overflow-y: auto;"></div>
-  </div>
+    <!-- End Game / Personal Feedback Screen -->
+    <section id="feedback-screen" style="display: none;">
+      <h2>Nice Job Presenting!</h2>
+      <p>Your Final Score: <span id="my-final-score" class="final-score">0</span></p>
+      <h3>Comments:</h3>
+      <div id="my-comments-list" class="comments-list"></div>
+    </section>
+  </main>
 
   <button id="leave-game-btn" type="button" aria-label="Leave game">Leave Game</button>
 
   <script src="/socket.io/socket.io.js"></script>
-  <script src="./join.js"></script>
+  <script src="/site-modal.js"></script>
+  <script src="/join/join.js"></script>
 </body>
 </html>

@@ -1,10 +1,15 @@
 {
   "name": "slide_deck_social",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Slide Deck Social – a presentation improv party game (host on a TV, play on phones).",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "node --test --test-timeout=60000 test/unit.test.js test/integration.test.js",
+    "test:e2e": "node --test --test-timeout=300000 --test-concurrency=1 test/e2e/ui.e2e.test.js",
+    "test:all": "npm test && npm run test:e2e",
+    "simulate": "node scripts/simulate.js",
+    "loadtest": "node scripts/loadtest.js"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +17,12 @@
   "dependencies": {
     "express": "^5.2.1",
     "socket.io": "^4.8.4"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.65.1",
+    "socket.io-client": "^4.8.3"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

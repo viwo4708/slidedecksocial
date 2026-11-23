@@ -1,13 +1,13 @@
-body { 
-  font-family: sans-serif; 
-        text-align: center; 
-        background: #52489C; 
-        color: white; 
-    }
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background: #52489C;
+    color: white;
+}
 
 h1 {
     font-family: "Slackey";
-     color: #ff8892;
+    color: #ff8892;
 }
 
 h2, h3 {
@@ -16,6 +16,22 @@ h2, h3 {
 
 p {
     font-family: "Dosis";
+}
+
+a {
+    color: #59c3c3;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .smallheader {
@@ -34,12 +50,18 @@ p {
     gap: 2vw;
 }
 
-.smallheader h1 {
+.header-brand a {
+    text-decoration: none;
+}
+
+.brand-name {
+    font-family: "Slackey";
+    color: #ff8892;
     font-size: 5vw;
     margin: 0;
 }
 
-.smallheader h4 {
+.brand-emoji {
     font-family: "Noto Color Emoji";
     font-size: 5vw;
     margin: 0;
@@ -52,263 +74,423 @@ p {
     margin-left: auto;
 }
 
-.smallheader-nav a {
+.smallheader-nav a,
+.smallheader-nav a:visited {
     font-family: "Dosis";
     font-size: 1.1rem;
     color: #EBEBEB;
     text-decoration: none;
     font-weight: 600;
+    white-space: nowrap;
 }
 
+/* Same look as the "Join A Game" heading had before (it was an h2). */
+.page-heading {
+    font-family: "McLaren";
+    color: white;
+    font-size: 10vw;
+    margin: 0.6em 0 0.4em;
+}
 
-    input { width: 80%; 
-            padding: 12px; 
-            font-size: 1.2rem; 
-            margin: 10px 0; 
-            border-radius: 30px; 
-            border: none; 
-            text-align: center; 
-    }
-    button { 
-        color: white;
-        width: 85%; 
-        padding: 12px; 
-        font-size: 1.2rem; 
-        font-family: "Dosis";
-        background: #ff8892; 
-        border: none; 
-        border-radius: 30px; 
-        cursor: pointer;
-        margin-top: 5vh;
-    }
+input {
+    width: 80%;
+    padding: 12px;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    border-radius: 30px;
+    border: none;
+    text-align: center;
+}
 
-    #leave-game-btn {
-        height: auto;
-        font-size: 1.1rem;
-        background: #59c3c3;
-    }
+#join-form input,
+#step-topics input {
+    display: block;
+    margin: 10px auto;
+}
 
+#room-code-input {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
 
-    .card { 
-        background: #ff8892; 
-        color: #EBEBEB;
-        padding: 20px; 
-        border-radius: 10px; 
-    }
-    
-    /* Carousel Styling for Slidemaster Queue */
-    .carousel-container { 
-        display: flex; 
-        align-items: center; 
-        justify-content: 
-        center; gap: 
-        10px; margin: 
-        15px 0; 
-    }
-    .carousel-view { 
-        width: 220px; 
-        height: 180px; 
-        background: #2a2a2a; 
-        border: 2px solid #333; 
-        border-radius: 8px; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        overflow: hidden; padding: 10px; 
-    }
-    .carousel-view img { 
-        max-width: 100%; 
-        max-height: 100%; 
-        object-fit: contain; 
-    
-    }
-    .nav-btn { 
-        width: 42px;
-        min-width: 42px;
-        max-width: 42px;
-        height: 42px;
-        flex: 0 0 42px;
-        padding: 0;
+button {
+    color: white;
+    width: 85%;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-family: "Dosis";
+    background: #ff8892;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 5vh;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.error-msg {
+    color: #ffb3ba;
+    min-height: 1.2em;
+}
+
+.waiting-text {
+    font-family: "McLaren";
+}
+
+/* Only shown once you're in a game (it was visible on the join form too). */
+#leave-game-btn {
+    display: none;
+    height: auto;
+    font-size: 1.1rem;
+    background: #59c3c3;
+}
+
+#leave-game-btn.is-visible {
+    display: block;
+    margin: 6vh auto 2rem;
+    width: min(60%, 260px);
+}
+
+.card {
+    background: #ff8892;
+    color: #EBEBEB;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* ---------- Photos ---------- */
+
+.upload-btn {
+    display: inline-block;
+    padding: .8rem 1.4rem;
+    background-color: #ff8892;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    font-family: "Dosis";
+    cursor: pointer;
+}
+
+.upload-btn.is-disabled {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.photo-status {
+    margin: 1rem 0 0;
+    font-size: 1.05rem;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 3vh;
+}
+
+.photo-box {
+    position: relative;
+    width: 100%;
+    height: 30vh;
+    max-height: 220px;
+    background: #333;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-box .photo-remove {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.link-btn {
+    width: auto;
+    margin: 1rem auto 0;
+    padding: 0.4rem 1rem;
+    background: transparent;
+    color: #EBEBEB;
+    text-decoration: underline;
+    font-size: 1rem;
+}
+
+#clear-photos-btn,
+#next-to-topics-btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#clear-photos-btn {
+    margin-top: 1rem;
+}
+
+/* ---------- Countdown ---------- */
+
+.countdown-timer {
+    font-family: "Slackey";
+    font-size: 3rem;
+    color: #EBEBEB;
+    margin: 0.5rem 0;
+}
+
+.countdown-role {
+    font-size: 1.1rem;
+}
+
+/* ---------- Slidemaster ---------- */
+
+.sm-title {
+    color: #EBEBEB;
+    margin-bottom: 5px;
+}
+
+.sm-subtitle {
+    margin: 5px 0;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.carousel-view {
+    width: 220px;
+    height: 180px;
+    background: #2a2a2a;
+    border: 2px solid #333;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.carousel-view img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.carousel-text {
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.carousel-note {
+    color: #EBEBEB;
+}
+
+.nav-btn {
+    width: 42px;
+    min-width: 42px;
+    max-width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    background: #ff8892;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.nav-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+#advance-slide-btn {
+    display: block;
+    width: 40%;
+    max-width: 40%;
+    margin: 5vh auto 0;
+    margin-bottom: 5vh;
+}
+
+/* ---------- Rating ---------- */
+
+.rating-title {
+    color: #EBEBEB;
+}
+
+.rating-out-of {
+    font-size: 0.9rem;
+    color: #EBEBEB;
+    margin: 0 0 1.25rem;
+}
+
+.stepper-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 15px 0;
+}
+
+.step-btn {
+    width: 42px;
+    min-width: 42px;
+    max-width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    background: #ff8892;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.rating-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #EBEBEB;
+    min-width: 60px;
+}
+
+textarea {
+    width: 80%;
+    min-height: 80px;
+    padding: 12px;
+    font-size: 1rem;
+    font-family: "Dosis";
+    border-radius: 16px;
+    border: none;
+}
+
+/* ---------- Feedback ---------- */
+
+.final-score {
+    color: #ff8892;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.comments-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.no-comments {
+    color: #EBEBEB;
+}
+
+.comment-card {
+    background: #ff8892;
+    color: #EBEBEB;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 8px 0;
+    text-align: left;
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+    body {
         margin: 0;
-        font-size: 1.2rem;
-        border-radius: 50%; 
-        background: #ff8892; 
-        border: none; 
-        color: white; 
-        font-weight: bold; 
-        cursor: pointer; 
+        padding: 0;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    main {
+        padding: 0 0.75rem;
+    }
+
+    .smallheader {
+        padding: 0.75rem 0.75rem 0.5rem;
+        margin: 0;
+    }
+
+    .header-brand {
+        flex-wrap: nowrap;
+        gap: 0.35rem;
+    }
+
+    .brand-name {
+        font-size: clamp(1.05rem, 5vw, 1.4rem);
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .brand-emoji {
+        font-size: clamp(0.8rem, 3.8vw, 1rem);
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .smallheader-nav {
+        gap: 0.7rem;
+    }
+
+    .smallheader-nav a {
+        font-size: 1rem;
+    }
+
+    #join-form,
+    #join-form * {
+        box-sizing: border-box;
+    }
+
+    #join-form {
+        width: 100%;
+        margin: 0;
+    }
+
+    #join-form input,
+    #join-form button,
+    #step-photos button:not(.photo-remove):not(.link-btn),
+    #step-topics input,
+    #step-topics > button,
+    #rating-screen textarea,
+    #rating-screen > button,
+    #submit-rating-btn,
+    #join-btn,
+    #submit-content-btn,
+    #next-to-topics-btn {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     #advance-slide-btn {
-        display: block;
-        width: 40%;
-        max-width: 40%;
-        margin: 5vh auto 0;
-        margin-bottom: 5vh;
+        width: 80%;
+        max-width: 80%;
     }
 
-    #join-entry-nav {
-        display: flex;
+    .carousel-view {
+        width: min(62vw, 300px);
+        height: min(50vw, 240px);
     }
-
-    #join-entry-nav.is-hidden {
-        display: none !important;
-    }
-
-    @media (max-width: 768px) {
-        body {
-            margin: 0;
-            padding: 0;
-            padding-bottom: 4.5rem;
-        }
-
-        .smallheader {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 0.75rem 0.75rem 0.5rem;
-            margin: 0;
-        }
-
-        .header-brand {
-            flex-wrap: nowrap;
-            gap: 0.35rem;
-        }
-
-        .smallheader h1 {
-            font-size: clamp(1.05rem, 5vw, 1.4rem);
-            margin: 0;
-            white-space: nowrap;
-        }
-
-        .smallheader h4 {
-            font-size: clamp(0.8rem, 3.8vw, 1rem);
-            margin: 0;
-            white-space: nowrap;
-        }
-
-        .smallheader-nav {
-            justify-content: center;
-            width: 100%;
-            gap: 0.7rem;
-            margin-left: 0;
-            margin-top: 0.25rem;
-        }
-
-        .smallheader-nav a {
-            font-size: 0.9rem;
-        }
-
-        #join-form,
-        #join-form * {
-            box-sizing: border-box;
-        }
-
-        #join-form {
-            width: 100%;
-            margin: 0;
-            padding: 0 0.75rem;
-        }
-
-        #join-form input,
-        #join-form button,
-        #step-photos input,
-        #step-photos button,
-        #step-topics input,
-        #step-topics button,
-        #rating-screen textarea,
-        #rating-screen button,
-        #submit-rating-btn,
-        #join-btn,
-        #submit-content-btn,
-        #next-to-topics-btn {
-            width: 100% !important;
-            max-width: 100% !important;
-            box-sizing: border-box;
-        }
-
-        .photo-grid img,
-        .carousel-view img,
-        .slide-content img,
-        .pagecontent img,
-        img {
-            width: 100% !important;
-            max-width: 100% !important;
-            height: auto;
-            display: block;
-        }
-    }
-
-    /* Rating Stepper Styling */
-    .stepper-container { 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        gap: 20px; 
-        margin: 15px 0; 
-    }
-
-    .step-btn { 
- width: 42px;
-        min-width: 42px;
-        max-width: 42px;
-        height: 42px;
-        flex: 0 0 42px;
-        padding: 0;
-        margin: 0;
-        font-size: 1.2rem;
-        border-radius: 50%; 
-        background: #ff8892; 
-        border: none; 
-        color: white; 
-        font-weight: bold; 
-        cursor: pointer; 
-    }
-
-    .upload-btn {
-        padding: .8rem;
-        background-color: #ff8892;
-        border-radius: 30px;
-        font-size: 1.5rem;
-        font-family: "Dosis";
-    }
-
-    .photo-grid { 
-        display: grid; 
-        grid-template-columns: repeat(3, 1fr); 
-        gap: 10px; 
-        margin-top: 5vh;
-    }
-    .photo-box { 
-        width: 100%; 
-        height: 30vh; 
-        background: #333; 
-        border-radius: 5px; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        overflow: hidden; 
-    }
-    .photo-box img { 
-        width: 100%; 
-        height: 100%; 
-        object-fit: cover; 
-    }
-
-    .rating-number { 
-        font-size: 3rem; 
-        font-weight: bold; 
-        color: #EBEBEB; 
-        min-width: 60px; 
-    }
-    
-    /* Feedback Box */
-    .comment-card { 
-        background: #ff8892; 
-        color: #EBEBEB;
-        padding: 10px; 
-        border-radius: 6px; 
-        margin: 8px 0;
-        text-align: left; 
-        font-size: 0.9rem; 
-    }
+}
