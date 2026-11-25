@@ -2,6 +2,7 @@
 
 const express = require('express');
 const http = require('http');
+const fs = require('fs');
 const { Server } = require('socket.io');
 const path = require('path');
 const { randomUUID } = require('crypto');
@@ -9,6 +10,10 @@ const { GAME_TEXT_BLURBS, GAME_CONCLUSIONS } = require('./gameContent');
 const { version: PACKAGE_VERSION } = require('./package.json');
 
 const PUBLIC_DIR = path.join(__dirname, 'public');
+const FRUIT_AVATARS = fs.readdirSync(path.join(PUBLIC_DIR, 'fruit-avatars'))
+  .filter(filename => /\.(png|jpe?g|webp|gif)$/i.test(filename))
+  .sort()
+  .map(filename => `/fruit-avatars/${filename}`);
 
 const DEFAULTS = {
   // Phones drop their connection all the time (screen locks, switching apps, the
@@ -108,6 +113,13 @@ function removeSubmittedItems(pool, submittedItems = []) {
     const itemIndex = pool.indexOf(item);
     if (itemIndex !== -1) pool.splice(itemIndex, 1);
   }
+}
+
+function pickFruitAvatar(players) {
+  const assigned = new Set(players.map(player => player.avatar));
+  const available = FRUIT_AVATARS.filter(avatar => !assigned.has(avatar));
+  if (available.length === 0) throw new Error('No unused fruit avatars are available');
+  return available[Math.floor(Math.random() * available.length)];
 }
 
 const FALLBACK_TOPIC = 'The Secret to Ultimate Success';
@@ -532,6 +544,9 @@ function createGameServer(options = {}) {
     const canRejoin = room.gameState === 'LOBBY' || room.gameState === 'SUBMITTING';
     if (!player && socket.data.player && canRejoin && room.players.length < config.maxPlayers) {
       player = socket.data.player;
+      if (room.players.some(existing => existing.avatar === player.avatar)) {
+        player.avatar = pickFruitAvatar(room.players);
+      }
       player.id = socket.id;
       room.players.push(player);
       io.to(roomCode).emit('player_list_updated', room.players);
@@ -604,7 +619,7 @@ function createGameServer(options = {}) {
     const player = {
       id: socket.id,
       username,
-      avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(username)}`,
+      avatar: pickFruitAvatar(room.players),
       submitted: false,
       totalScore: 0,
       receivedComments: [],

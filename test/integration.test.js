@@ -108,6 +108,9 @@ test('"End Game & Start New Room" gives a new code and players can play again', 
 
 test('8 players can play a full game and a 9th is turned away', withServer(async server => {
   const { host, players } = await lobby(server, 8);
+  const avatars = players.map(player => player.player.avatar);
+  assert.ok(avatars.every(avatar => /^\/fruit-avatars\/\d+\.png$/.test(avatar)));
+  assert.equal(new Set(avatars).size, 8, 'each player gets a unique fruit avatar');
   const ninth = new PlayerBot(server, 'Ninth');
   const r = await ninth.join(host.roomCode);
   assert.equal(r.ok, false);

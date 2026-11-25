@@ -382,7 +382,7 @@ const socket = io();
       hideAllScreens();
       countdownScreen.style.display = 'block';
       if (countdown !== undefined) countdownTimer.innerText = countdown;
-      countdownRole.innerText = presenterName ? `${presenterName} is up next${slidemasterName ? `, with ${slidemasterName} on slides` : ''}.` : '';
+      countdownRole.innerText = presenterName ? `${presenterName} is up next${slidemasterName ? `, with ${slidemasterName} assisting as slidemaster` : ''}.` : '';
     });
 
     socket.on('countdown_tick', (seconds) => {
