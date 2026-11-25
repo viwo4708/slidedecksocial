@@ -437,6 +437,7 @@ button.cta-host:hover {
 .player-card img {
     width: 80px;
     height: 80px;
+    object-fit: contain;
 }
 
 /* Presentation Slide Stage Styling */
