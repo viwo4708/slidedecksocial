@@ -40,8 +40,7 @@ Please keep load tests against the live site small (it runs on a home server).
   (used by the tests with fast timers); running the file directly starts the real server.
 - `gameContent.js` – slide phrases and conclusions.
 - `public/` – host/TV page (`index.html`, `host.js`), phone page (`join/`), How to Play and About
-  pages (also shown as modals via `site-modal.js`), SEO files (`robots.txt`, `sitemap.xml`, icons).
-- `scripts/build-images.js` – regenerates the PNG icons and social share image from `favicon.svg`.
+  pages (also shown as modals via `site-modal.js`), SEO files (`robots.txt`, `sitemap.xml`).
 - `test/` – unit, integration and browser tests.
 
 `/healthz` returns a small JSON status (room and connection counts) for uptime monitoring.
