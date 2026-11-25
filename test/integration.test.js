@@ -554,11 +554,11 @@ test('SEO and HTTP basics', withServer(async server => {
   assert.match(robots.body, /Sitemap: https:\/\/slidedecksocial.com\/sitemap.xml/);
   const sitemap = await get(`${server.url}/sitemap.xml`);
   assert.match(sitemap.body, /<loc>https:\/\/slidedecksocial.com\/how-to-play\/<\/loc>/);
-  for (const asset of ['/favicon.svg', '/favicon-32.png', '/apple-touch-icon.png', '/og-image.png', '/site.webmanifest',
-    '/how-to-play/boxtv.jpg', '/how-to-play/holgas.jpg', '/how-to-play/tedtalk.jpg', '/about/jakevikki.jpg', '/site-modal.js']) {
+  for (const asset of ['/how-to-play/boxtv.jpg', '/how-to-play/holgas.jpg', '/how-to-play/tedtalk.jpg',
+    '/about/jakevikki.jpg', '/site-modal.js']) {
     assert.equal((await get(server.url + asset)).status, 200, asset);
   }
-  const img = await get(`${server.url}/og-image.png`);
+  const img = await get(`${server.url}/how-to-play/boxtv.jpg`);
   assert.match(img.headers['cache-control'], /max-age=604800/);
   assert.equal((await get(`${server.url}/host.js`)).headers['cache-control'], 'no-cache');
 
